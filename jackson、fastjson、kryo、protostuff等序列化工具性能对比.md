@@ -308,4 +308,4 @@ DeSerializeTest.protostuffDeSerialize  thrpt   10  499.328 ± 4.485  ops/ms
 
 > 相关源码请移步：[ serialize-tool-demo](https://github.com/ZhangZiSheng001/serialize-tool-demo)
 
-> 本文为原创文章，转载请附上原文出处链接：[https://www.cnblogs.com/ZhangZiSheng001/p/13196228.html](
+> 本文为原创文章，转载请附上原文出处链接：[https://www.cnblogs.com/ZhangZiSheng001/p/13948414.html](https://www.cnblogs.com/ZhangZiSheng001/p/13948414.html)
