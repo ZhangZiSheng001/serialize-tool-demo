@@ -33,7 +33,7 @@ protostuff：1.7.2
 ```java
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-    // 普通属性--29个
+    // 普通属性--129个
     private String id;
     private String account;
     private String password;
@@ -250,15 +250,15 @@ java -ea -jar target/benchmarks.jar cn.zzs.serialize.SerializeTest -f 1 -t 1 -wi
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Throughput, ops/time
 Benchmark                           Mode  Cnt    Score    Error   Units
-SerializeTest.fastJsonSerialize    thrpt   10  449.474 ±  1.851  ops/ms
-SerializeTest.fstSerialize         thrpt   10  694.716 ±  7.240  ops/ms
-SerializeTest.jacksonSerialize     thrpt   10  330.610 ±  6.968  ops/ms
-SerializeTest.jdkSerialize         thrpt   10  132.483 ±  0.379  ops/ms
-SerializeTest.kryoSerialize        thrpt   10  609.969 ±  3.288  ops/ms
-SerializeTest.protostuffSerialize  thrpt   10  762.737 ± 10.918  ops/ms
+SerializeTest.fastJsonSerialize    thrpt   10   72.914 ± 1.651  ops/ms
+SerializeTest.fstSerialize         thrpt   10  252.735 ± 3.148  ops/ms
+SerializeTest.jacksonSerialize     thrpt   10   90.981 ± 3.394  ops/ms
+SerializeTest.jdkSerialize         thrpt   10   45.049 ± 0.623  ops/ms
+SerializeTest.kryoSerialize        thrpt   10  301.603 ± 3.147  ops/ms
+SerializeTest.protostuffSerialize  thrpt   10  260.144 ± 2.264  ops/ms
 ```
 
-可以看到，**序列化速度方面：protostuff > fst > kryo > fastjson > jackson > jdk**。
+可以看到，**序列化速度方面：kryo > protostuff > fst > jackson > fastjson > jdk**。由于 bean 对象的不同，测试结果可能会有差异。
 
 ## 反序列化
 
@@ -282,25 +282,25 @@ java -ea -jar target/benchmarks.jar cn.zzs.serialize.DeSerializeTest -f 1 -t 1 -
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Throughput, ops/time
 
-fastjson serialized data size:1044
-fst serialized data size:607
-jackson serialized data size:1060
-jdk serialized data size:1700
-kryo serialized data size:597
-protostuff serialized data size:543
+fastjson serialized data size:3044
+fst serialized data size:1507
+jackson serialized data size:3060
+jdk serialized data size:4200
+kryo serialized data size:1297
+protostuff serialized data size:1543
 
 Benchmark                               Mode  Cnt    Score   Error   Units
-DeSerializeTest.fastJsonDeSerialize    thrpt   10  397.069 ± 3.507  ops/ms
-DeSerializeTest.fstDeSerialize         thrpt   10  465.813 ± 4.700  ops/ms
-DeSerializeTest.jacksonDeSerialize     thrpt   10  226.412 ± 1.436  ops/ms
-DeSerializeTest.jdkDeSerialize         thrpt   10   27.919 ± 0.352  ops/ms
-DeSerializeTest.kryoDeSerialize        thrpt   10  448.978 ± 3.504  ops/ms
-DeSerializeTest.protostuffDeSerialize  thrpt   10  499.328 ± 4.485  ops/ms
+DeSerializeTest.fastJsonDeSerialize    thrpt   10   54.956 ± 2.191  ops/ms
+DeSerializeTest.fstDeSerialize         thrpt   10  192.875 ± 3.541  ops/ms
+DeSerializeTest.jacksonDeSerialize     thrpt   10   63.998 ± 1.014  ops/ms
+DeSerializeTest.jdkDeSerialize         thrpt   10   13.870 ± 0.194  ops/ms
+DeSerializeTest.kryoDeSerialize        thrpt   10  230.786 ± 4.018  ops/ms
+DeSerializeTest.protostuffDeSerialize  thrpt   10  147.933 ± 3.032  ops/ms
 ```
 
-可以看到，**反序列化速度方面：protostuff > fst > kryo > fastjson > jackson > jdk**，该结果和序列化一致。
+可以看到，**反序列化速度方面：kryo > fst > protostuff > jackson > fastjson > jdk**，该结果和序列化基本一致，由于 bean 对象的不同，测试结果可能会有差异。
 
-**序列化数据的大小方面：protostuff < kryo < fst < fastjson < jackson < jdk**。
+**序列化数据的大小方面：kryo < fst < protostuff < fastjson < jackson < jdk**。
 
 以上数据仅供参考。感谢阅读。
 
